@@ -10,7 +10,7 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!--方式一-->
+    <!--方式一：手动配置路径映射-->
     <!--<bean id="simpleUrlHandlerMapping"-->
           <!--class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
         <!--<property name="mappings">-->
@@ -22,9 +22,17 @@
     <!--</bean>-->
     <!--<bean id="helloController" class="controller.HelloController"></bean>-->
 
-    <mvc:annotation-driven />
+    <!--<mvc:annotation-driven />-->
 
+    <!--方式二：扫描指定报下的组件，根据注解映射-->
     <!-- 扫描controller下的组件 -->
     <context:component-scan base-package="controller"/>
+
+    <!--视图解析器-->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/page/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
 
 </beans>
